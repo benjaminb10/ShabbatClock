@@ -1,0 +1,3 @@
+rootProject.name = 'ShabbatClock'
+
+include ':app'
