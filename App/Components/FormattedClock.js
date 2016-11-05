@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import {
   Text,
+  View,
+  StyleSheet,
 } from 'react-native';
 
 function getDayName(dateString) {
@@ -17,13 +19,31 @@ export default class FormattedClock extends Component {
     let date = this.props.date;
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes)+":"+(seconds<10 ? '0'+seconds : seconds);
+    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
 
     return (
-      <Text>
-        {getDayName(date)+"\n"+time}
-      </Text>
+      <View>
+        <Text style={styles.date}>
+          {getDayName(date)+" "+date.getDate()}
+        </Text>
+        <Text style={styles.time}>
+          {time}
+        </Text>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  date: {
+    color: '#FF001F',
+    textAlign: 'center',
+    fontSize: 28,
+    marginTop: 50,
+  },
+  time: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 78,
+  },
+});

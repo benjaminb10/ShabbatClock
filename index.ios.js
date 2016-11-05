@@ -19,9 +19,16 @@ export default class ShabbatClock extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
+        <View style={styles.timeContainer}>
           <Clock />
-        </Text>
+        </View>
+        <View style={styles.schedulesContainer}>
+        </View>
+        <View style={styles.informationsContainer}>
+          <Text style={styles.informations}>
+            Horaires de Paris, France
+          </Text>
+        </View>
       </View>
     );
   }
@@ -30,19 +37,27 @@ export default class ShabbatClock extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000',
+  },
+  timeContainer: {
+    flex: 0.3,
+  },
+  date: {
+    color: '#FF001F',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  schedulesContainer: {
+    flex: 0.6,
+  },
+  informationsContainer: {
+    flex: 0.1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
+  informations: {
+    color: '#4A4A4A',
     textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    fontSize: 18,
   },
 });
 
