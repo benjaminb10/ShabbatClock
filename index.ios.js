@@ -47,7 +47,8 @@ class FormattedClock extends Component {
 
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
+    let seconds = date.getSeconds();
+    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes)+":"+(seconds<10 ? '0'+seconds : seconds);
     return (
       <Text>
         {getDayName(date)+"\n"+time}
