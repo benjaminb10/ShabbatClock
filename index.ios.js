@@ -23,6 +23,22 @@ export default class ShabbatClock extends Component {
           <Clock />
         </View>
         <View style={styles.schedulesContainer}>
+          <Text style={styles.schedules}>
+            <Text>
+              Shabbat entrera{'\n'}
+            </Text>
+            <Text style={styles.white}>
+              TODO{'\n'}
+            </Text>
+          </Text>
+          <Text style={styles.schedules}>
+            <Text>
+              et sortira{'\n'}
+            </Text>
+            <Text style={styles.white}>
+              TODO
+            </Text>
+          </Text>
         </View>
         <View style={styles.informationsContainer}>
           <Text style={styles.informations}>
@@ -38,6 +54,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    padding: 20,
   },
   timeContainer: {
     flex: 0.3,
@@ -49,6 +66,18 @@ const styles = StyleSheet.create({
   },
   schedulesContainer: {
     flex: 0.6,
+  },
+  schedules: {
+    color: '#9B9B9B',
+    fontSize: 28,
+  },
+  white: {
+    color: '#fff',
+  },
+  right: {
+    flex: 1,
+    textAlign: 'center',
+    backgroundColor: 'green',
   },
   informationsContainer: {
     flex: 0.1,
