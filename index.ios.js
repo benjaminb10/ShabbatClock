@@ -14,7 +14,7 @@ import {
   View
 } from 'react-native';
 
-import Clock from './app/components/Clock';
+import Clock from './App/Components/Clock';
 
 
 
