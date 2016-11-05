@@ -22,35 +22,37 @@ class Clock extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { date: new Date() };
+    let now = new Date();
+
+    this.state = { date: date, time: time };
+
+    let date = getDayName(now)+" "+now.getUTCDate();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
+
 
     // Toggle the state every second
     setInterval(() => {
-      this.setState({ date: new Date() });
+
+      let now = new Date();
+      let date = getDayName(now)+" "+now.getUTCDate();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
+
+      this.setState({ date: date, time: time });
     }, 1000);
+
+
   }
 
   render() {
-    return (
-      <FormattedClock date={this.state.date} />
-    );
-  }
-}
-
-class FormattedClock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let date = this.props.date;
-
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
     return (
       <Text>
-        {getDayName(date)+"\n"+time}
+        {this.state.date}
+        {"\n"}
+        {this.state.time}
       </Text>
     );
   }
@@ -62,6 +64,13 @@ export default class ShabbatClock extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>
           <Clock />
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.ios.js
+        </Text>
+        <Text style={styles.instructions}>
+          Press Cmd+R to reload,{'\n'}
+          Cmd+D or shake for dev menu
         </Text>
       </View>
     );
