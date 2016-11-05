@@ -15,8 +15,6 @@ import {
 
 import Clock from './App/Components/Clock';
 
-
-
 export default class ShabbatClock extends Component {
   render() {
     return (
