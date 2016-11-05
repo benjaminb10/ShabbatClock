@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import FormattedClock from './FormattedClock';
 
@@ -8,7 +7,6 @@ export default class Clock extends Component {
 
     this.state = { date: new Date() };
 
-    // Toggle the state every second
     setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
