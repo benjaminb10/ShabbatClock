@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import Time from 'react-time';
+// import Time from 'react-time';
 
 import {
   AppRegistry,
