@@ -5,7 +5,6 @@
  */
 
 import React, { Component } from 'react';
-import Time from 'react-time';
 
 import {
   AppRegistry,
@@ -14,47 +13,9 @@ import {
   View
 } from 'react-native';
 
-function getDayName(dateString) {
-  return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
-}
+import Clock from './App/Components/Clock';
 
-class Clock extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { date: new Date() };
-
-    // Toggle the state every second
-    setInterval(() => {
-      this.setState({ date: new Date() });
-    }, 1000);
-  }
-
-  render() {
-    return (
-      <FormattedClock date={this.state.date} />
-    );
-  }
-}
-
-class FormattedClock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let date = this.props.date;
-
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
-    return (
-      <Text>
-        {getDayName(date)+"\n"+time}
-      </Text>
-    );
-  }
-}
 
 export default class ShabbatClock extends Component {
   render() {
