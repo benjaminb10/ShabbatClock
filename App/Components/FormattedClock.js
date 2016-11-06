@@ -14,36 +14,38 @@ movies = {}
 
 function getMoviesFromApiAsync() {
 
+
+
+
+
+
   //var url = 'https://facebook.github.io/react-native/movies.json';
   // var url = 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=48.864716&longitude=2.349014&tzid=Europe/Paris';
 
-  var params = {
-      cfg: 'json',
-      m: 50,
-      latitude: 48.86471,
-      longitude: 2.349014,
-      tzid: 'Europe/Paris'
-  };
-
-
-
-  var url = 'http://www.hebcal.com/shabbat/';
-
-
-  var request = {
-      method: 'GET',
-      params: params,
-  };
-
-
-  return fetch(url, request)
-    .then(function(response) {
-      movies = responseJson;
-      alert(movies);
-    })
-    .catch((error) => {
-      alert(error);
-    });
+// Fetch
+//   var url = 'http://www.hebcal.com/shabbat/';
+//
+//   var params = {
+//       cfg: 'json',
+//       m: 50,
+//       latitude: 48.86471,
+//       longitude: 2.349014,
+//       tzid: 'Europe/Paris'
+//   };
+//
+//   var request = {
+//       method: 'GET',
+//       params: params,
+//   };
+//
+//   return fetch(url, request)
+//     .then((response) => response.json())
+//     .then(function(response) {
+//       alert(response.blob());
+//     })
+//     .catch((error) => {
+//       alert(error);
+//     });
 }
 
 
@@ -55,14 +57,10 @@ export default class FormattedClock extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = { shabbatStartDate: new Date() };
   }
 
-
-
-  componentWillMount()  {
-    movies = getMoviesFromApiAsync();
-
-  }
 
 
   render() {

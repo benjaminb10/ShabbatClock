@@ -37,6 +37,33 @@ export default class ShabbatClock extends Component {
 
 
 
+  componentWillMount()  {
+
+
+      // XMLHttpRequest
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = (e) => {
+        if (request.readyState !== 4) {
+          return;
+        }
+
+        if (request.status === 200) {
+          alert(request.responseText);
+          this.setState({
+            shabbatStartDate: new Date()
+          });
+        } else {
+          console.warn('error');
+          alert('error');
+        }
+      };
+
+      request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=48.864716&longitude=2.349014&tzid=Europe/Paris');
+      request.send();
+
+  }
+
+
   render() {
 
 
