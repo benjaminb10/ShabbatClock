@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import Clock from './App/Components/Clock';
+import Geolocation from './App/Components/Geolocation';
 
 var moment = require('moment');
 
@@ -106,6 +107,9 @@ export default class ShabbatClock extends Component {
           <Text style={styles.informations}>
             Paris, France
           </Text>
+        </View>
+        <View style={styles.informationsContainer}>
+          <Geolocation />
         </View>
       </View>
     );
