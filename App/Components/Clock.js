@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import FormattedClock from './FormattedClock';
 
 export default class Clock extends Component {
