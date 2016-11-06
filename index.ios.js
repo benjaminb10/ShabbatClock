@@ -23,64 +23,51 @@ function getDayName(dateString) {
 
 
 export default class ShabbatClock extends Component {
+
+
   constructor(props) {
     super(props);
-
-    //moment.locale('fr');
-
-
-    // this.state = {
-    //   shabbatStartDate: new Date(),
-    //   shabbatEndDate: new Date(),
-    // };
-
     this.state = {
-      // shabbatStartDate: new Date(),
-      // shabbatEndDate: new Date(),
       shabbatStartDate: moment(),
       shabbatEndDate: moment(),
-
-      shabbatStartDateFormatted: null,
-      shabbatEndDateFormatted: null,
+      shabbatStartDateFromNow: 0, // in seconds
+      shabbatEndDateFromNow: 0, // in seconds
     };
 
   }
 
 
   componentWillMount()  {
-
       // XMLHttpRequest
       var request = new XMLHttpRequest();
       request.onreadystatechange = (e) => {
         if (request.readyState !== 4) {
           return;
         }
-
         if (request.status === 200) {
-
-          // alert(request.responseText);
-          var jsonResponse = JSON.parse(request.responseText);
-
-
+          let jsonResponse = JSON.parse(request.responseText);
           let shabbatStartDate = moment(jsonResponse.items[0].date);
           let shabbatEndDate = moment(jsonResponse.items[2].date);
 
           this.setState({
             shabbatStartDate: shabbatStartDate,
             shabbatEndDate: shabbatEndDate,
-
-            shabbatStartDateFormatted: shabbatStartDate.format("ddd, MMM Do YYYY \n H:mm:ss"),
-            shabbatEndDateFormatted: shabbatEndDate.format("ddd, MMM Do YYYY \n H:mm:ss"),
           });
+
+          setInterval(() => {
+            this.setState({
+              shabbatStartDate: shabbatStartDate,
+              shabbatEndDate: shabbatEndDate,
+            });
+          }, 1000);
+
         } else {
           console.warn('error');
           alert('error');
         }
       };
-
       request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=48.864716&longitude=2.349014&tzid=Europe/Paris');
       request.send();
-
   }
 
 
@@ -94,24 +81,30 @@ export default class ShabbatClock extends Component {
         <View style={styles.schedulesContainer}>
           <Text style={styles.schedules}>
             <Text>
-              Shabbat entrera:{'\n'}
+              Shabbat starts:{'\n'}
             </Text>
             <Text style={styles.white}>
-              {this.state.shabbatStartDateFormatted}{'\n'}
+              {this.state.shabbatStartDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
+            </Text>
+            <Text style={styles.countdown}>
+              {this.state.shabbatStartDate.fromNow()}{'\n'}
             </Text>
           </Text>
           <Text style={styles.schedules}>
             <Text>
-              Shabbat sortira:{'\n'}
+              Shabbat ends:{'\n'}
             </Text>
             <Text style={styles.white}>
-              {this.state.shabbatEndDateFormatted}{'\n'}
+              {this.state.shabbatEndDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
+            </Text>
+            <Text style={styles.countdown}>
+              {this.state.shabbatEndDate.fromNow()}{'\n'}
             </Text>
           </Text>
         </View>
         <View style={styles.informationsContainer}>
           <Text style={styles.informations}>
-            Horaires de Paris, France
+            Paris, France
           </Text>
         </View>
       </View>
@@ -137,12 +130,16 @@ const styles = StyleSheet.create({
     flex: 0.6,
   },
   schedules: {
-    color: '#9B9B9B',
-    fontSize: 28,
+    color: '#fff',
+    fontSize: 20,
     textAlign: 'center',
   },
   white: {
+    color: '#777',
+  },
+  countdown: {
     color: '#fff',
+    fontSize: 40,
   },
   right: {
     flex: 1,
@@ -154,7 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   informations: {
-    color: '#4A4A4A',
+    color: '#aaa',
     textAlign: 'center',
     fontSize: 18,
   },

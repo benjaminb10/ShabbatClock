@@ -6,6 +6,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+var moment = require('moment');
+
 function getDayName(dateString) {
   return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
 }
@@ -58,24 +60,22 @@ export default class FormattedClock extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { shabbatStartDate: new Date() };
+    this.state = {
+      now: moment(),
+      shabbatStartDate: moment()
+    };
   }
 
 
 
   render() {
-    let date = this.props.date;
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
-
     return (
       <View>
         <Text style={styles.date}>
-          {getDayName(date)+" "+date.getDate()}
+          {this.state.now.format("dddd, MMM Do")}
         </Text>
         <Text style={styles.time}>
-          {time}
+          {this.state.now.format("H:mm")}
         </Text>
       </View>
     );
