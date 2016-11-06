@@ -15,8 +15,36 @@ import {
 
 import Clock from './App/Components/Clock';
 
+
+function getDayName(dateString) {
+  return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
+}
+
+
 export default class ShabbatClock extends Component {
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   shabbatStartDate: new Date(),
+    //   shabbatEndDate: new Date(),
+    // };
+
+    this.state = { shabbatStartDate: new Date() };
+
+
+
+  }
+
+
+
   render() {
+
+
+    let date = this.state.shabbatStartDate;
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
+
     return (
       <View style={styles.container}>
         <View style={styles.timeContainer}>
@@ -28,7 +56,7 @@ export default class ShabbatClock extends Component {
               Shabbat entrera{'\n'}
             </Text>
             <Text style={styles.white}>
-              TODO{'\n'}
+              {getDayName(date)+" "+date.getDate()}{'\n'}
             </Text>
           </Text>
           <Text style={styles.schedules}>
