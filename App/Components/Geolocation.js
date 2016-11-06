@@ -7,25 +7,7 @@ import {
   View
 } from 'react-native';
 
-// import Geocoder from 'react-native-geocoding';
 import Geocoder from 'react-native-geocoder';
-
-// simply add your google key
-Geocoder.fallbackToGoogle('AIzaSyC9fzeWGbwr0hzycVUBBnvePIUW6Ti32gI');
-
-
-// Geocoder.setApiKey('AIzaSyC9fzeWGbwr0hzycVUBBnvePIUW6Ti32gI'); // use a valid API key
-
-// Geocoder.getFromLocation("Tel Aviv").then(
-//   json => {
-//     var location = json.results[0].geometry.location;
-//     alert(location.lat + ", " + location.lng);
-//   },
-//   error => {
-//     alert(error);
-//   }
-// );
-
 
 
 export default class Geolocation extends Component {
@@ -41,12 +23,6 @@ export default class Geolocation extends Component {
     };
   }
 
-  //
-  // state = {
-  //   initialPosition: 'unknown',
-  //   lastPosition: 'unknown',
-  // };
-
 
   watchID: ?number = null;
 
@@ -55,6 +31,26 @@ export default class Geolocation extends Component {
       (position) => {
         var initialPosition = JSON.stringify(position);
         // alert(position.coords.latitude);
+
+        // Position Geocoding
+        var place = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        Geocoder.geocodePosition(place).then(res => {
+            // res is an Array of geocoding object (see below)
+            // alert(res[0].position.lat + ", " + res[0].position.lng)
+            // alert(res[0].locality + ", " + res[0].country)
+
+            this.setState({
+              locality: res[0].locality,
+              country: res[0].country,
+            });
+        })
+        .catch(err => alert(err))
+
+
         this.setState({
           initialPosition: position,
           initialPositionString: initialPosition,
@@ -67,24 +63,6 @@ export default class Geolocation extends Component {
       var lastPosition = JSON.stringify(position);
       // alert(lastPosition);
 
-
-      // Position Geocoding
-      var place = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      Geocoder.geocodePosition(place).then(res => {
-          // res is an Array of geocoding object (see below)
-          // alert(res[0].position.lat + ", " + res[0].position.lng)
-          // alert(res[0].locality + ", " + res[0].country)
-
-          this.setState({
-            locality: res[0].locality,
-            country: res[0].country,
-          });
-      })
-      .catch(err => alert(err))
 
       this.setState({
         lastPosition: position,
@@ -101,8 +79,8 @@ export default class Geolocation extends Component {
   render() {
     return (
       <View style={styles.schedulesContainer}>
-        <Text style={styles.schedules}>
-          {this.state.locality}, {this.state.country}
+        <Text style={styles.schedulesWhite}>
+          {this.state.locality}, {this.state.country}{'\n'}
         </Text>
         <Text style={styles.schedules}>
           Latitude: {this.state.lastPosition != null ? this.state.lastPosition.coords.latitude : 'Loading...'}
@@ -133,8 +111,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   schedules: {
+    color: '#999',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  schedulesWhite: {
     color: '#fff',
-    fontSize: 14,
+    fontSize: 20,
     textAlign: 'center',
   },
   white: {

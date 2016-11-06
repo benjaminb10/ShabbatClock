@@ -104,11 +104,6 @@ export default class ShabbatClock extends Component {
           </Text>
         </View>
         <View style={styles.informationsContainer}>
-          <Text style={styles.informations}>
-            Paris, France
-          </Text>
-        </View>
-        <View style={styles.informationsContainer}>
           <Geolocation />
         </View>
       </View>
@@ -131,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   schedulesContainer: {
-    flex: 0.6,
+    flex: 0.4,
   },
   schedules: {
     color: '#fff',
@@ -143,7 +138,7 @@ const styles = StyleSheet.create({
   },
   countdown: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: 30,
   },
   right: {
     flex: 1,
@@ -151,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
   },
   informationsContainer: {
-    flex: 0.1,
+    flex: 0.15,
     justifyContent: 'center',
   },
   informations: {
