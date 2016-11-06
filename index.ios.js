@@ -44,14 +44,10 @@ export default class ShabbatClock extends Component {
       shabbatEndDateFormatted: null,
     };
 
-
-
   }
 
 
-
   componentWillMount()  {
-
 
       // XMLHttpRequest
       var request = new XMLHttpRequest();
@@ -65,17 +61,16 @@ export default class ShabbatClock extends Component {
           // alert(request.responseText);
           var jsonResponse = JSON.parse(request.responseText);
 
-          // alert(jsonResponse.items[0].date);
 
           let shabbatStartDate = moment(jsonResponse.items[0].date);
           let shabbatEndDate = moment(jsonResponse.items[2].date);
 
           this.setState({
-            shabbatStartDate: moment(jsonResponse.items[0].date),
-            shabbatEndDate: moment(jsonResponse.items[2].date),
+            shabbatStartDate: shabbatStartDate,
+            shabbatEndDate: shabbatEndDate,
 
-            shabbatStartDateFormatted: shabbatStartDate.format("dddd, MMMM Do YYYY, h:mm:ss a"),
-            shabbatEndDateFormatted: shabbatEndDate.format("dddd, MMMM Do YYYY, h:mm:ss a"),
+            shabbatStartDateFormatted: shabbatStartDate.format("ddd, MMM Do YYYY \n H:mm:ss"),
+            shabbatEndDateFormatted: shabbatEndDate.format("ddd, MMM Do YYYY \n H:mm:ss"),
           });
         } else {
           console.warn('error');
@@ -90,15 +85,6 @@ export default class ShabbatClock extends Component {
 
 
   render() {
-
-    //
-    // let dateFormatted = moment(this.state.shabbatStartDate);
-    // alert(dateFormatted.format("dddd, MMMM Do YYYY, h:mm:ss a"));
-    //
-    // let date = this.state.shabbatStartDate;
-    // let hours = date.getHours();
-    // let minutes = date.getMinutes();
-    // let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
 
     return (
       <View style={styles.container}>
