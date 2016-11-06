@@ -15,6 +15,7 @@ import {
 
 import Clock from './App/Components/Clock';
 
+var moment = require('moment');
 
 function getDayName(dateString) {
   return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
@@ -24,12 +25,24 @@ function getDayName(dateString) {
 export default class ShabbatClock extends Component {
   constructor(props) {
     super(props);
+
+    //moment.locale('fr');
+
+
     // this.state = {
     //   shabbatStartDate: new Date(),
     //   shabbatEndDate: new Date(),
     // };
 
-    this.state = { shabbatStartDate: new Date() };
+    this.state = {
+      // shabbatStartDate: new Date(),
+      // shabbatEndDate: new Date(),
+      shabbatStartDate: moment(),
+      shabbatEndDate: moment(),
+
+      shabbatStartDateFormatted: null,
+      shabbatEndDateFormatted: null,
+    };
 
 
 
@@ -48,9 +61,21 @@ export default class ShabbatClock extends Component {
         }
 
         if (request.status === 200) {
-          alert(request.responseText);
+
+          // alert(request.responseText);
+          var jsonResponse = JSON.parse(request.responseText);
+
+          // alert(jsonResponse.items[0].date);
+
+          let shabbatStartDate = moment(jsonResponse.items[0].date);
+          let shabbatEndDate = moment(jsonResponse.items[2].date);
+
           this.setState({
-            shabbatStartDate: new Date()
+            shabbatStartDate: moment(jsonResponse.items[0].date),
+            shabbatEndDate: moment(jsonResponse.items[2].date),
+
+            shabbatStartDateFormatted: shabbatStartDate.format("dddd, MMMM Do YYYY, h:mm:ss a"),
+            shabbatEndDateFormatted: shabbatEndDate.format("dddd, MMMM Do YYYY, h:mm:ss a"),
           });
         } else {
           console.warn('error');
@@ -66,11 +91,14 @@ export default class ShabbatClock extends Component {
 
   render() {
 
-
-    let date = this.state.shabbatStartDate;
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
+    //
+    // let dateFormatted = moment(this.state.shabbatStartDate);
+    // alert(dateFormatted.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+    //
+    // let date = this.state.shabbatStartDate;
+    // let hours = date.getHours();
+    // let minutes = date.getMinutes();
+    // let time = (hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes);
 
     return (
       <View style={styles.container}>
@@ -80,18 +108,18 @@ export default class ShabbatClock extends Component {
         <View style={styles.schedulesContainer}>
           <Text style={styles.schedules}>
             <Text>
-              Shabbat entrera{'\n'}
+              Shabbat entrera:{'\n'}
             </Text>
             <Text style={styles.white}>
-              {getDayName(date)+" "+date.getDate()}{'\n'}
+              {this.state.shabbatStartDateFormatted}{'\n'}
             </Text>
           </Text>
           <Text style={styles.schedules}>
             <Text>
-              et sortira{'\n'}
+              Shabbat sortira:{'\n'}
             </Text>
             <Text style={styles.white}>
-              TODO
+              {this.state.shabbatEndDateFormatted}{'\n'}
             </Text>
           </Text>
         </View>
@@ -125,6 +153,7 @@ const styles = StyleSheet.create({
   schedules: {
     color: '#9B9B9B',
     fontSize: 28,
+    textAlign: 'center',
   },
   white: {
     color: '#fff',
