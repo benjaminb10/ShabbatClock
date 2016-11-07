@@ -14,9 +14,16 @@ export default class Clock extends Component {
     this.state = {
       shabbatStartDate: moment(),
       shabbatEndDate: moment(),
-      shabbatStartDateFromNow: 0, // in seconds
-      shabbatEndDateFromNow: 0, // in seconds
+      shabbatStartDateFromNow: "...", // in seconds
+      shabbatEndDateFromNow: "...", // in seconds
     };
+
+    setInterval(() => {
+      this.setState({
+        shabbatStartDateFromNow: this.state.shabbatStartDate.fromNow(),
+        shabbatEndDateFromNow: this.state.shabbatEndDate.fromNow(),
+      });
+    }, 1000);
   }
 
   componentWillMount()  {
@@ -49,7 +56,8 @@ export default class Clock extends Component {
       <View>
         <Text style={styles.schedules}>
           <Text>
-            Shabbat entre {this.state.shabbatStartDate.fromNow()+'\n'}
+            Shabbat{' '}
+            {this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"} {this.state.shabbatStartDateFromNow+'\n'}
           </Text>
           <Text style={styles.white}>
             {this.state.shabbatStartDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
@@ -57,7 +65,8 @@ export default class Clock extends Component {
         </Text>
         <Text style={styles.schedules}>
           <Text>
-            et sort {this.state.shabbatEndDate.fromNow()+'\n'}
+            et{' '}
+            {this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort"} {this.state.shabbatEndDateFromNow+'\n'}
           </Text>
           <Text style={styles.white}>
             {this.state.shabbatEndDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
