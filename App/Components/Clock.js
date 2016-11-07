@@ -2,20 +2,26 @@ import React, { Component } from 'react';
 
 import FormattedClock from './FormattedClock';
 
+var moment = require('moment');
+
 export default class Clock extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { date: new Date() };
+    this.state = {
+      now: moment(),
+    };
 
     setInterval(() => {
-      this.setState({ date: new Date() });
+      this.setState({
+        now: moment(),
+      });
     }, 1000);
   }
 
   render() {
     return (
-      <FormattedClock date={this.state.date} />
+      <FormattedClock datetime={this.state.now} />
     );
   }
 }
