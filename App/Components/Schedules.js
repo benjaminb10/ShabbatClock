@@ -57,7 +57,7 @@ export default class Clock extends Component {
         </Text>
         <Text style={styles.schedules}>
           <Text>
-            Shabbat sort {this.state.shabbatEndDate.fromNow()+'\n'}
+            et sort {this.state.shabbatEndDate.fromNow()+'\n'}
           </Text>
           <Text style={styles.white}>
             {this.state.shabbatEndDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
