@@ -49,24 +49,18 @@ export default class Clock extends Component {
       <View>
         <Text style={styles.schedules}>
           <Text>
-            Shabbat starts:{'\n'}
+            Shabbat entre {this.state.shabbatStartDate.fromNow()+'\n'}
           </Text>
           <Text style={styles.white}>
-            {this.state.shabbatStartDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
-          </Text>
-          <Text style={styles.countdown}>
-            {this.state.shabbatStartDate.fromNow()}{'\n'}
+            {this.state.shabbatStartDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
           </Text>
         </Text>
         <Text style={styles.schedules}>
           <Text>
-            Shabbat ends:{'\n'}
+            Shabbat sort {this.state.shabbatEndDate.fromNow()+'\n'}
           </Text>
           <Text style={styles.white}>
-            {this.state.shabbatEndDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
-          </Text>
-          <Text style={styles.countdown}>
-            {this.state.shabbatEndDate.fromNow()}{'\n'}
+            {this.state.shabbatEndDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
           </Text>
         </Text>
       </View>
@@ -76,20 +70,14 @@ export default class Clock extends Component {
 
 const styles = StyleSheet.create({
   schedules: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
+    color: '#9B9B9B',
+    fontSize: 28,
   },
   white: {
-    color: '#777',
+    color: '#fff',
   },
   countdown: {
     color: '#fff',
     fontSize: 30,
-  },
-  right: {
-    flex: 1,
-    textAlign: 'center',
-    backgroundColor: 'green',
   },
 });
