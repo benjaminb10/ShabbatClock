@@ -19,13 +19,11 @@ export default class FormattedClock extends Component {
 
     this.state = {
       now: moment(),
-      shabbatStartDate: moment()
     };
 
     setInterval(() => {
       this.setState({
         now: moment(),
-        shabbatStartDate: moment()
       });
     }, 1000);
   }
