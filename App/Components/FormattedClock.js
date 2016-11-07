@@ -12,50 +12,7 @@ function getDayName(dateString) {
   return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
 }
 
-movies = {}
-
-function getMoviesFromApiAsync() {
-
-
-
-
-
-
-  //var url = 'https://facebook.github.io/react-native/movies.json';
-  // var url = 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=48.864716&longitude=2.349014&tzid=Europe/Paris';
-
-// Fetch
-//   var url = 'http://www.hebcal.com/shabbat/';
-//
-//   var params = {
-//       cfg: 'json',
-//       m: 50,
-//       latitude: 48.86471,
-//       longitude: 2.349014,
-//       tzid: 'Europe/Paris'
-//   };
-//
-//   var request = {
-//       method: 'GET',
-//       params: params,
-//   };
-//
-//   return fetch(url, request)
-//     .then((response) => response.json())
-//     .then(function(response) {
-//       alert(response.blob());
-//     })
-//     .catch((error) => {
-//       alert(error);
-//     });
-}
-
-
-
 export default class FormattedClock extends Component {
-
-
-  // movies = {}
 
   constructor(props) {
     super(props);
@@ -64,9 +21,14 @@ export default class FormattedClock extends Component {
       now: moment(),
       shabbatStartDate: moment()
     };
+
+    setInterval(() => {
+      this.setState({
+        now: moment(),
+        shabbatStartDate: moment()
+      });
+    }, 1000);
   }
-
-
 
   render() {
     return (

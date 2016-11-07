@@ -25,7 +25,6 @@ function getDayName(dateString) {
 
 export default class ShabbatClock extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,9 +33,7 @@ export default class ShabbatClock extends Component {
       shabbatStartDateFromNow: 0, // in seconds
       shabbatEndDateFromNow: 0, // in seconds
     };
-
   }
-
 
   componentWillMount()  {
       // XMLHttpRequest
