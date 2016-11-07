@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import FormattedClock from './FormattedClock';
+import {
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native';
 
 var moment = require('moment');
 
@@ -21,7 +25,28 @@ export default class Clock extends Component {
 
   render() {
     return (
-      <FormattedClock datetime={this.state.now} />
+      <View>
+        <Text style={styles.date}>
+          {this.state.now.format("dddd, MMM Do")}
+        </Text>
+        <Text style={styles.time}>
+          {this.state.now.format("H:mm")}
+        </Text>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  date: {
+    color: '#FF001F',
+    textAlign: 'center',
+    fontSize: 28,
+    marginTop: 50,
+  },
+  time: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 78,
+  },
+});
