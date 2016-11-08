@@ -88,7 +88,7 @@ export default class Clock extends Component {
     return (
       <View>
         <Text style={styles.date}>
-          {this.state.now.format("dddd").toUpperCase().substring(0,3)+". "+this.state.now.date()}
+          {this.state.now.format("ddd").toUpperCase()+' '+this.state.now.date()}
         </Text>
         <Text style={styles.time}>
           {this.state.now.format("H:mm")}
