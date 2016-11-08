@@ -69,7 +69,7 @@ export default class Clock extends Component {
             {this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort"} {this.state.shabbatEndDateFromNow+'\n'}
           </Text>
           <Text style={styles.informations}>
-            {this.state.shabbatEndDate.format("dddd").toUpperCase().substring(0,3)+". "+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+            {this.state.shabbatEndDate.format("ddd").toUpperCase().substring(0,3)+". "+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
           </Text>
         </Text>
       </View>
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   schedules: {
     color: '#9B9B9B',
     fontSize: 22,
+    textAlign: 'center',
   },
   informations: {
     color: '#fff',
