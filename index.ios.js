@@ -16,7 +16,7 @@ import {
   View
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Clock from './App/Components/Clock';
 import Schedules from './App/Components/Schedules';
 import Geolocation from './App/Components/Geolocation';
@@ -48,12 +48,14 @@ export default class ShabbatClock extends Component {
               this.setModalVisible(!this.state.modalVisible)
             }}>
               <Text style={{color: '#fff', textAlign: 'right'}}>
-                <Icon name="close" size={24} color="#fff" />
+                <Icon name="ios-close" size={36} color="#fff" />
               </Text>
             </TouchableHighlight>
 
-            <Text style={[styles.informations, {fontSize:26, marginTop:50}]}>
+            <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
               Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
+              {'\n'}{'\n'}{'\n'}Une remarque ?
+              {'\n'}shabbatclock@gmail.com
             </Text>
           </View>
          </View>
@@ -72,8 +74,8 @@ export default class ShabbatClock extends Component {
         <TouchableHighlight onPress={() => {
           this.setModalVisible(true)
         }}>
-          <Text style={{color: '#fff', textAlign: 'right'}}>
-            <Icon name="info-circle" size={24} color="#fff" />
+          <Text style={{textAlign: 'right'}}>
+            <Icon name="ios-information" size={44} color="#fff" />
           </Text>
         </TouchableHighlight>
 
