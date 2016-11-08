@@ -10,102 +10,75 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Modal,
+  Image,
+  TouchableHighlight,
   View
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';
 import Clock from './App/Components/Clock';
+import Schedules from './App/Components/Schedules';
 import Geolocation from './App/Components/Geolocation';
-
-var moment = require('moment');
-
-function getDayName(dateString) {
-  return ['DIM.', 'LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.'][new Date(dateString).getDay()];
-}
-
 
 export default class ShabbatClock extends Component {
 
-
   constructor(props) {
     super(props);
-    this.state = {
-      shabbatStartDate: moment(),
-      shabbatEndDate: moment(),
-      shabbatStartDateFromNow: 0, // in seconds
-      shabbatEndDateFromNow: 0, // in seconds
-    };
-
+    this.state = {modalVisible: false};
   }
 
-
-  componentWillMount()  {
-      // XMLHttpRequest
-      var request = new XMLHttpRequest();
-      request.onreadystatechange = (e) => {
-        if (request.readyState !== 4) {
-          return;
-        }
-        if (request.status === 200) {
-          let jsonResponse = JSON.parse(request.responseText);
-          let shabbatStartDate = moment(jsonResponse.items[0].date);
-          let shabbatEndDate = moment(jsonResponse.items[2].date);
-
-          this.setState({
-            shabbatStartDate: shabbatStartDate,
-            shabbatEndDate: shabbatEndDate,
-          });
-
-          setInterval(() => {
-            this.setState({
-              shabbatStartDate: shabbatStartDate,
-              shabbatEndDate: shabbatEndDate,
-            });
-          }, 1000);
-
-        } else {
-          console.warn('error');
-          alert('error');
-        }
-      };
-      request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=48.864716&longitude=2.349014&tzid=Europe/Paris');
-      request.send();
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
-
 
   render() {
 
     return (
       <View style={styles.container}>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+         <View style={styles.container}>
+          <View>
+            <TouchableHighlight onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+            }}>
+              <Text style={{color: '#fff', textAlign: 'right'}}>
+                <Icon name="ios-close" size={36} color="#fff" />
+              </Text>
+            </TouchableHighlight>
+
+            <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
+              Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
+              {'\n'}{'\n'}{'\n'}Une remarque ?
+              {'\n'}shabbatclock@gmail.com
+            </Text>
+          </View>
+         </View>
+        </Modal>
+
         <View style={styles.timeContainer}>
           <Clock />
         </View>
         <View style={styles.schedulesContainer}>
-          <Text style={styles.schedules}>
-            <Text>
-              Shabbat starts:{'\n'}
-            </Text>
-            <Text style={styles.white}>
-              {this.state.shabbatStartDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
-            </Text>
-            <Text style={styles.countdown}>
-              {this.state.shabbatStartDate.fromNow()}{'\n'}
-            </Text>
-          </Text>
-          <Text style={styles.schedules}>
-            <Text>
-              Shabbat ends:{'\n'}
-            </Text>
-            <Text style={styles.white}>
-              {this.state.shabbatEndDate.format("ddd, MMM Do YYYY, H:mm")}{'\n'}
-            </Text>
-            <Text style={styles.countdown}>
-              {this.state.shabbatEndDate.fromNow()}{'\n'}
-            </Text>
-          </Text>
+          <Schedules />
         </View>
         <View style={styles.informationsContainer}>
           <Geolocation />
         </View>
+
+        <TouchableHighlight onPress={() => {
+          this.setModalVisible(true)
+        }}>
+          <Text style={{textAlign: 'right'}}>
+            <Icon name="ios-information" size={44} color="#fff" />
+          </Text>
+        </TouchableHighlight>
+
       </View>
     );
   }
@@ -120,30 +93,8 @@ const styles = StyleSheet.create({
   timeContainer: {
     flex: 0.3,
   },
-  date: {
-    color: '#FF001F',
-    textAlign: 'center',
-    fontSize: 18,
-  },
   schedulesContainer: {
     flex: 0.4,
-  },
-  schedules: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  white: {
-    color: '#777',
-  },
-  countdown: {
-    color: '#fff',
-    fontSize: 30,
-  },
-  right: {
-    flex: 1,
-    textAlign: 'center',
-    backgroundColor: 'green',
   },
   informationsContainer: {
     flex: 0.15,

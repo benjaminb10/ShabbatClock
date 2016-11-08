@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
-  View
+  View,
+  StyleSheet,
 } from 'react-native';
 
 import Geocoder from 'react-native-geocoder';
-
 
 export default class Geolocation extends Component {
   constructor(props) {
@@ -22,7 +20,6 @@ export default class Geolocation extends Component {
       country:                'unknown',
     };
   }
-
 
   watchID: ?number = null;
 
@@ -63,7 +60,6 @@ export default class Geolocation extends Component {
       var lastPosition = JSON.stringify(position);
       // alert(lastPosition);
 
-
       this.setState({
         lastPosition: position,
         lastPositionString: lastPosition,
@@ -75,17 +71,16 @@ export default class Geolocation extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-
   render() {
     return (
-      <View style={styles.schedulesContainer}>
-        <Text style={styles.schedulesWhite}>
+      <View>
+        <Text style={styles.informations}>
           {this.state.locality}, {this.state.country}{'\n'}
         </Text>
-        <Text style={styles.schedules}>
+        <Text style={styles.muted}>
           Latitude: {this.state.lastPosition != null ? this.state.lastPosition.coords.latitude : 'Loading...'}
         </Text>
-        <Text style={styles.schedules}>
+        <Text style={styles.muted}>
           Longitude: {this.state.lastPosition != null ? this.state.lastPosition.coords.longitude : 'Loading...'}
         </Text>
       </View>
@@ -94,51 +89,14 @@ export default class Geolocation extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    padding: 20,
-  },
-  timeContainer: {
-    flex: 0.3,
-  },
-  date: {
-    color: '#FF001F',
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  schedulesContainer: {
-    flex: 1,
-  },
-  schedules: {
-    color: '#999',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  schedulesWhite: {
+  informations: {
     color: '#fff',
     fontSize: 20,
     textAlign: 'center',
   },
-  white: {
-    color: '#777',
-  },
-  countdown: {
-    color: '#fff',
-    fontSize: 40,
-  },
-  right: {
-    flex: 1,
+  muted: {
+    color: '#999',
+    fontSize: 16,
     textAlign: 'center',
-    backgroundColor: 'green',
-  },
-  informationsContainer: {
-    flex: 0.1,
-    justifyContent: 'center',
-  },
-  informations: {
-    color: '#aaa',
-    textAlign: 'center',
-    fontSize: 18,
   },
 });
