@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     color: '#FF001F',
     textAlign: 'center',
     fontSize: 28,
-    marginTop: 30,
+    marginTop: 10,
   },
   time: {
     color: '#fff',

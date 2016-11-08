@@ -10,9 +10,13 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Modal,
+  Image,
+  TouchableHighlight,
   View
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Clock from './App/Components/Clock';
 import Schedules from './App/Components/Schedules';
 import Geolocation from './App/Components/Geolocation';
@@ -21,12 +25,40 @@ export default class ShabbatClock extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {modalVisible: false};
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   render() {
 
     return (
       <View style={styles.container}>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+         <View style={styles.container}>
+          <View>
+            <TouchableHighlight onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+            }}>
+              <Text style={{color: '#fff', textAlign: 'right'}}>
+                <Icon name="close" size={24} color="#fff" />
+              </Text>
+            </TouchableHighlight>
+
+            <Text style={[styles.informations, {fontSize:26, marginTop:50}]}>
+              Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
+            </Text>
+          </View>
+         </View>
+        </Modal>
+
         <View style={styles.timeContainer}>
           <Clock />
         </View>
@@ -36,6 +68,15 @@ export default class ShabbatClock extends Component {
         <View style={styles.informationsContainer}>
           <Geolocation />
         </View>
+
+        <TouchableHighlight onPress={() => {
+          this.setModalVisible(true)
+        }}>
+          <Text style={{color: '#fff', textAlign: 'right'}}>
+            <Icon name="info-circle" size={24} color="#fff" />
+          </Text>
+        </TouchableHighlight>
+
       </View>
     );
   }
@@ -49,11 +90,6 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flex: 0.3,
-  },
-  date: {
-    color: '#FF001F',
-    textAlign: 'center',
-    fontSize: 18,
   },
   schedulesContainer: {
     flex: 0.4,
