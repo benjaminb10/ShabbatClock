@@ -8,6 +8,7 @@ import {
 
 var moment = require('moment');
 import Geocoder from 'react-native-geocoder';
+import DeviceInfo from 'react-native-device-info';
 
 export default class Clock extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ export default class Clock extends Component {
       lastPositionString:     'unknown',
       locality:               'unknown',
       country:                'unknown',
+
+      timezone:                DeviceInfo.getTimezone(),
     };
 
 
@@ -38,10 +41,6 @@ export default class Clock extends Component {
       });
     }, 1000);
   }
-
-  componentWillMount()  {
-  }
-
 
 
 
@@ -90,7 +89,7 @@ export default class Clock extends Component {
           }
         };
 
-        request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=' + place.lat + '&longitude=' + place.lng + '&tzid=Europe/Paris');
+        request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=' + place.lat + '&longitude=' + place.lng + '&tzid=' + this.state.timezone);
         request.send();
 
 
