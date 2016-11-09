@@ -13,50 +13,9 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Clock from './Clock';
 import Schedules from './Schedules';
+import AboutModal from './AboutModal';
+import OpenModalButton from './OpenModalButton';
 
-
-
-class OpenModalButton extends Component {
-    render() {
-      return (
-        <TouchableHighlight onPress={() => { this.props.toggleModal() }}>
-          <Text style={{textAlign: 'right'}}>
-            <Icon name="ios-information" size={44} color="#fff" />
-          </Text>
-        </TouchableHighlight>
-      );
-    }
-}
-
-
-
-class AboutModal extends Component {
-    render() {
-      return (
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.props.modalVisible}
-          >
-         <View style={styles.modal}>
-          <View>
-            <TouchableHighlight onPress={() => { this.props.toggleModal() }}>
-              <Text style={{color: '#fff', textAlign: 'right'}}>
-                <Icon name="ios-close" size={36} color="#fff" />
-              </Text>
-            </TouchableHighlight>
-
-            <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
-              Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
-              {'\n'}{'\n'}{'\n'}Une remarque ?
-              {'\n'}shabbatclock@gmail.com
-            </Text>
-          </View>
-         </View>
-        </Modal>
-      );
-    }
-}
 
 
 
