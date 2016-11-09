@@ -10,7 +10,7 @@ var moment = require('moment');
 import Geocoder from 'react-native-geocoder';
 import DeviceInfo from 'react-native-device-info';
 
-export default class Clock extends Component {
+export default class Schedules extends Component {
   constructor(props) {
     super(props);
     this.state = {
