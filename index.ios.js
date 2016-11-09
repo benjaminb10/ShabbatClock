@@ -19,7 +19,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Clock from './App/Components/Clock';
 import Schedules from './App/Components/Schedules';
-import Geolocation from './App/Components/Geolocation';
+// import Geolocation from './App/Components/Geolocation';
 
 export default class ShabbatClock extends Component {
 
@@ -67,9 +67,8 @@ export default class ShabbatClock extends Component {
         <View style={styles.schedulesContainer}>
           <Schedules />
         </View>
-        <View style={styles.informationsContainer}>
-          <Geolocation />
-        </View>
+
+
 
         <TouchableHighlight onPress={() => {
           this.setModalVisible(true)
