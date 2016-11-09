@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   timeContainer: {
-    flex: 0.3,
+    flex: 0.2,
   },
   schedulesContainer: {
     flex: 0.4,
   },
   informationsContainer: {
-    flex: 0.15,
+    flex: 0.2,
     justifyContent: 'center',
   },
   informations: {

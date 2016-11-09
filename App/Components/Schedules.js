@@ -16,8 +16,8 @@ export default class Clock extends Component {
     this.state = {
       shabbatStartDate: moment(),
       shabbatEndDate: moment(),
-      shabbatStartDateFromNow: "...", // in seconds
-      shabbatEndDateFromNow: "...", // in seconds
+      shabbatStartDateFromNow: " ", // in seconds
+      shabbatEndDateFromNow: " ", // in seconds
 
       // Geolocation
       initialPosition:        null,
@@ -139,29 +139,32 @@ export default class Clock extends Component {
   render() {
     return (
       <View>
-        <View>
-          <Text style={styles.schedules}>
-            <Text>
-              Shabbat{' '}
-              {this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"} {this.state.shabbatStartDateFromNow+'\n'}
-            </Text>
-            <Text style={styles.informations}>
-              {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
-            </Text>
+        <Text style={styles.schedules}>
+          <Text>
+            Shabbat{' '}
+            {this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"}
+            {'\n'}
           </Text>
-          <Text style={styles.schedules}>
-            <Text>
-              et{' '}
-              {this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort"} {this.state.shabbatEndDateFromNow+'\n'}
-            </Text>
-            <Text style={styles.informations}>
-              {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
-            </Text>
+          <Text style={styles.informations}>
+            {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
           </Text>
-
-
-        </View>
-
+          <Text>
+            {this.state.shabbatStartDateFromNow}
+          </Text>
+        </Text>
+        <Text style={styles.schedules}>
+          <Text>
+            {'\n'}{'\n'}Shabbat{' '}
+            {this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort"}
+            {'\n'}
+          </Text>
+          <Text style={styles.informations}>
+            {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+          </Text>
+          <Text>
+            {this.state.shabbatEndDateFromNow}
+          </Text>
+        </Text>
         <View style={styles.informationsContainer}>
           <Text style={styles.geolocation}>
             {this.state.locality}, {this.state.country}{'\n'}
