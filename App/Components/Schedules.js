@@ -14,7 +14,7 @@ function arraySearch(arr, val) {
   for (var i=0; i<arr.length; i++)
     if (arr[i]["category"] === val)
       return i;
-  return false;
+  return -1;
 }
 
 export default class Schedules extends Component {
@@ -78,23 +78,22 @@ export default class Schedules extends Component {
             let indexOfShabbatStart = arraySearch(jsonResponse.items, "candles");
             let indexOfShabbatEnd = arraySearch(jsonResponse.items, "havdalah");
 
-            if (indexOfShabbatStart) {
-              // alert('ici')
+            // console.log(JSON.stringify(jsonResponse.items, null, 4))
+
+            if (indexOfShabbatStart >= 0) {
               this.setState({
                 hasShabbatStartDate: true,
                 shabbatStartDate: moment(jsonResponse.items[indexOfShabbatStart].date),
               })
             }
 
-            if (indexOfShabbatEnd) {
-              // alert('là')
+            if (indexOfShabbatEnd >= 0) {
               this.setState({
                 hasShabbatEndDate: true,
                 shabbatEndDate: moment(jsonResponse.items[indexOfShabbatEnd].date),
               })
             }
 
-            // console.log(JSON.stringify(jsonResponse.items, null, 4))
           } else {
             console.warn('error');
             alert('error');
@@ -142,14 +141,15 @@ export default class Schedules extends Component {
   render() {
     return (
       <View style={styles.container}>
-        { this.state.hasShabbatStartDate ? (
+
+        { this.state.hasShabbatEndDate ? (
           <View style={styles.schedulesContainer}>
             <Text style={styles.schedules}>
               <Text>
                 <Text>
-                  "Shabbat "
-                  +this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"
-                  +'\n'
+                  {"Shabbat "
+                  +(this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre")
+                  +'\n'}
                 </Text>
                 <Text style={styles.schedulesInformations}>
                   {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
@@ -162,7 +162,7 @@ export default class Schedules extends Component {
           </View>
           ) : null
         }
-        
+
         { this.state.hasShabbatEndDate ? (
           <View style={styles.schedulesContainer}>
             <Text style={styles.schedules}>
