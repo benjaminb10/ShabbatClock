@@ -10,6 +10,13 @@ var moment = require('moment');
 import Geocoder from 'react-native-geocoder';
 import DeviceInfo from 'react-native-device-info';
 
+function arraySearch(arr, val) {
+  for (var i=0; i<arr.length; i++)
+    if (arr[i]["category"] === val)
+      return i;
+  return false;
+}
+
 export default class Schedules extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +25,8 @@ export default class Schedules extends Component {
       shabbatEndDate: moment(),
       shabbatStartDateFromNow: " ", // in seconds
       shabbatEndDateFromNow: " ", // in seconds
+      hasShabbatStartDate: false,
+      hasShabbatEndDate: false,
 
       // Geolocation
       initialPosition:        null,
@@ -26,13 +35,8 @@ export default class Schedules extends Component {
       lastPositionString:     'unknown',
       locality:               'unknown',
       country:                'unknown',
-
       timezone:                DeviceInfo.getTimezone(),
     };
-
-
-
-
 
     setInterval(() => {
       this.setState({
@@ -42,16 +46,11 @@ export default class Schedules extends Component {
     }, 1000);
   }
 
-
-
-
-
   watchID: ?number = null;
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-
 
         var initialPosition = JSON.stringify(position);
         // alert(position.coords.latitude);
@@ -76,13 +75,26 @@ export default class Schedules extends Component {
           }
           if (request.status === 200) {
             let jsonResponse = JSON.parse(request.responseText);
-            let shabbatStartDate = moment(jsonResponse.items[0].date);
-            let shabbatEndDate = moment(jsonResponse.items[2].date);
+            let indexOfShabbatStart = arraySearch(jsonResponse.items, "candles");
+            let indexOfShabbatEnd = arraySearch(jsonResponse.items, "havdalah");
 
-            this.setState({
-              shabbatStartDate: shabbatStartDate,
-              shabbatEndDate: shabbatEndDate,
-            });
+            if (indexOfShabbatStart) {
+              // alert('ici')
+              this.setState({
+                hasShabbatStartDate: true,
+                shabbatStartDate: moment(jsonResponse.items[indexOfShabbatStart].date),
+              })
+            }
+
+            if (indexOfShabbatEnd) {
+              // alert('là')
+              this.setState({
+                hasShabbatEndDate: true,
+                shabbatEndDate: moment(jsonResponse.items[indexOfShabbatEnd].date),
+              })
+            }
+
+            // console.log(JSON.stringify(jsonResponse.items, null, 4))
           } else {
             console.warn('error');
             alert('error');
@@ -91,9 +103,6 @@ export default class Schedules extends Component {
 
         request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=' + place.lat + '&longitude=' + place.lng + '&tzid=' + this.state.timezone);
         request.send();
-
-
-
 
         Geocoder.geocodePosition(place).then(res => {
             // res is an Array of geocoding object (see below)
@@ -106,7 +115,6 @@ export default class Schedules extends Component {
             });
         })
         .catch(err => alert(err))
-
 
         this.setState({
           initialPosition: position,
@@ -131,43 +139,50 @@ export default class Schedules extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-
-
-
-
-
   render() {
     return (
       <View>
         <Text style={styles.schedules}>
-          <Text>
-            Shabbat{' '}
-            {this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"}
-            {'\n'}
-          </Text>
-          <Text style={styles.informations}>
-            {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
-          </Text>
-          <Text>
-            {this.state.shabbatStartDateFromNow}
-          </Text>
+          { this.state.hasShabbatStartDate ? (
+            <Text>
+              <Text>
+                "Shabbat "
+                +this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"
+                +'\n'
+              </Text>
+              <Text style={styles.informations}>
+                {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
+              </Text>
+              <Text>
+                {this.state.shabbatStartDateFromNow}
+              </Text>
+            </Text>
+            ) : ''
+          }
         </Text>
+
         <Text style={styles.schedules}>
-          <Text>
-            {'\n'}{'\n'}Shabbat{' '}
-            {this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort"}
-            {'\n'}
-          </Text>
-          <Text style={styles.informations}>
-            {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
-          </Text>
-          <Text>
-            {this.state.shabbatEndDateFromNow}
-          </Text>
+          { this.state.hasShabbatEndDate ? (
+            <Text>
+              <Text>
+                {"Shabbat "
+                +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
+                +'\n'}
+              </Text>
+              <Text style={styles.informations}>
+                {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+              </Text>
+              <Text>
+                {this.state.shabbatEndDateFromNow}
+              </Text>
+            </Text>
+            ) : ''
+          }
         </Text>
+
         <View style={styles.informationsContainer}>
           <Text style={styles.geolocation}>
-            {this.state.locality}, {this.state.country}{'\n'}
+            {this.state.locality}, {this.state.country}
           </Text>
         </View>
       </View>
