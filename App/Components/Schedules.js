@@ -141,46 +141,69 @@ export default class Schedules extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.schedules}>
-          { this.state.hasShabbatStartDate ? (
-            <Text>
+      <View style={styles.container}>
+        { this.state.hasShabbatStartDate ? (
+          <View style={styles.schedulesContainer}>
+            <Text style={styles.schedules}>
               <Text>
-                "Shabbat "
-                +this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"
-                +'\n'
-              </Text>
-              <Text style={styles.informations}>
-                {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
-              </Text>
-              <Text>
-                {this.state.shabbatStartDateFromNow}
+                <Text>
+                  "Shabbat "
+                  +this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre"
+                  +'\n'
+                </Text>
+                <Text style={styles.schedulesInformations}>
+                  {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
+                </Text>
+                <Text>
+                  {this.state.shabbatStartDateFromNow}
+                </Text>
               </Text>
             </Text>
-            ) : ''
-          }
-        </Text>
-
-        <Text style={styles.schedules}>
-          { this.state.hasShabbatEndDate ? (
-            <Text>
+          </View>
+          ) : null
+        }
+        { this.state.hasShabbatEndDate ? (
+          <View style={styles.schedulesContainer}>
+            <Text style={styles.schedules}>
               <Text>
-                {"Shabbat "
-                +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
-                +'\n'}
-              </Text>
-              <Text style={styles.informations}>
-                {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
-              </Text>
-              <Text>
-                {this.state.shabbatEndDateFromNow}
+                <Text>
+                  {"Shabbat "
+                  +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
+                  +'\n'}
+                </Text>
+                <Text style={styles.schedulesInformations}>
+                  {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+                </Text>
+                <Text>
+                  {this.state.shabbatEndDateFromNow}
+                </Text>
               </Text>
             </Text>
-            ) : ''
-          }
-        </Text>
+          </View>
+          ) : null
+        }
+        { this.state.hasShabbatEndDate ? (
+          <View style={styles.schedulesContainer}>
+            <Text style={styles.schedules}>
+              <Text>
+                <Text>
+                  {"Shabbat "
+                  +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
+                  +'\n'}
+                </Text>
+                <Text style={styles.schedulesInformations}>
+                  {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+                </Text>
+                <Text>
+                  {this.state.shabbatEndDateFromNow}
+                </Text>
+              </Text>
+            </Text>
+          </View>
+          ) : null
+        }
 
-        <View style={styles.informationsContainer}>
+        <View style={styles.geolocationContainer}>
           <Text style={styles.geolocation}>
             {this.state.locality}, {this.state.country}
           </Text>
@@ -191,19 +214,28 @@ export default class Schedules extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  schedulesContainer: {
+    flex: 0.4,
+  },
+  geolocationContainer: {
+    height: 20,
+  },
   schedules: {
     color: '#9B9B9B',
     fontSize: 22,
     textAlign: 'center',
   },
-  informations: {
+  schedulesInformations: {
     color: '#fff',
     fontSize: 34,
   },
   geolocation: {
-    color: '#fff',
+    color: '#9B9B9B',
     fontSize: 18,
     textAlign: 'center',
-    marginTop: 50,
+    justifyContent: 'flex-end'
   }
 });

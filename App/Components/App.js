@@ -66,17 +66,9 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flex: 0.3,
+    marginBottom: 50,
   },
   schedulesContainer: {
-    flex: 0.4,
-  },
-  informationsContainer: {
-    flex: 0.15,
-    justifyContent: 'center',
-  },
-  informations: {
-    color: '#aaa',
-    textAlign: 'center',
-    fontSize: 18,
+    flex: 0.7,
   },
 });
