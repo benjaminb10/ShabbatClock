@@ -162,26 +162,7 @@ export default class Schedules extends Component {
           </View>
           ) : null
         }
-        { this.state.hasShabbatEndDate ? (
-          <View style={styles.schedulesContainer}>
-            <Text style={styles.schedules}>
-              <Text>
-                <Text>
-                  {"Shabbat "
-                  +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
-                  +'\n'}
-                </Text>
-                <Text style={styles.schedulesInformations}>
-                  {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
-                </Text>
-                <Text>
-                  {this.state.shabbatEndDateFromNow}
-                </Text>
-              </Text>
-            </Text>
-          </View>
-          ) : null
-        }
+        
         { this.state.hasShabbatEndDate ? (
           <View style={styles.schedulesContainer}>
             <Text style={styles.schedules}>
