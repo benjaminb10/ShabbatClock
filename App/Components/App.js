@@ -15,10 +15,16 @@ import Clock from './Clock';
 import Schedules from './Schedules';
 import AboutModal from './AboutModal';
 import OpenModalButton from './OpenModalButton';
+import I18n from 'react-native-i18n'
 
-
-
-
+// Set it here for the all app
+var moment = require('moment');
+import 'moment/locale/fr'
+if (I18n.currentLocale().includes('fr')) {
+  moment.locale('fr');
+} else {
+  moment.locale('en');
+}
 
 export default class App extends Component {
 
@@ -66,17 +72,35 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flex: 0.3,
+    marginBottom: 50,
   },
   schedulesContainer: {
-    flex: 0.4,
-  },
-  informationsContainer: {
-    flex: 0.15,
-    justifyContent: 'center',
-  },
-  informations: {
-    color: '#aaa',
-    textAlign: 'center',
-    fontSize: 18,
+    flex: 0.7,
   },
 });
+
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+I18n.fallbacks = true
+
+I18n.translations = {
+  en: {
+    started: 'started',
+    starts: 'will start',
+    ended: 'ended',
+    ends: 'will end',
+    schedulesSource: 'Shabbat hours are given by the website ',
+    anyComment: 'Any comment?',
+    at: 'at',
+    loading: 'Loading...',
+  },
+  fr: {
+    started: 'est entré',
+    starts: 'entre',
+    ended: 'est sorti',
+    ends: 'sort',
+    schedulesSource: 'Les horaires de Shabbat sont issues du site internet ',
+    anyComment: 'Une remarque ?',
+    at: 'à',
+    loading: 'Chargement...',
+  }
+}
