@@ -90,6 +90,7 @@ I18n.translations = {
     ends: 'will end',
     schedulesSource: 'Shabbat hours are given by the website ',
     anyComment: 'Any comment?',
+    at: 'at',
   },
   fr: {
     started: 'est entré',
@@ -98,5 +99,6 @@ I18n.translations = {
     ends: 'sort',
     schedulesSource: 'Les horaires de Shabbat sont issues du site internet ',
     anyComment: 'Une remarque ?',
+    at: 'à',
   }
 }

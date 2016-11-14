@@ -154,7 +154,7 @@ export default class Schedules extends Component {
                   +'\n'}
                 </Text>
                 <Text style={styles.schedulesInformations}>
-                  {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date()+" à "+this.state.shabbatStartDate.format("H:mm")+'\n'}
+                  {this.state.shabbatStartDate.format("ddd").toUpperCase()+' '+this.state.shabbatStartDate.date() + ' ' + I18n.t('at') + ' '+this.state.shabbatStartDate.format("H:mm")+'\n'}
                 </Text>
                 <Text>
                   {this.state.shabbatStartDateFromNow}
@@ -175,7 +175,7 @@ export default class Schedules extends Component {
                   +'\n'}
                 </Text>
                 <Text style={styles.schedulesInformations}>
-                  {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+" à "+this.state.shabbatEndDate.format("H:mm")+'\n'}
+                  {this.state.shabbatEndDate.format("ddd").toUpperCase()+' '+this.state.shabbatEndDate.date()+' ' + I18n.t('at') + ' '+this.state.shabbatEndDate.format("H:mm")+'\n'}
                 </Text>
                 <Text>
                   {this.state.shabbatEndDateFromNow}
