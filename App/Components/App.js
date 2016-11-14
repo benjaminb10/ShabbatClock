@@ -16,10 +16,6 @@ import Schedules from './Schedules';
 import AboutModal from './AboutModal';
 import OpenModalButton from './OpenModalButton';
 
-
-
-
-
 export default class App extends Component {
 
   constructor(props) {

@@ -9,6 +9,7 @@ import {
 var moment = require('moment');
 import Geocoder from 'react-native-geocoder';
 import DeviceInfo from 'react-native-device-info';
+import I18n from 'react-native-i18n'
 
 function arraySearch(arr, val) {
   for (var i=0; i<arr.length; i++)
@@ -148,7 +149,7 @@ export default class Schedules extends Component {
               <Text>
                 <Text>
                   {"Shabbat "
-                  +(this.state.shabbatStartDate.isBefore(moment()) ? "est entré" : "entre")
+                  +(this.state.shabbatStartDate.isBefore(moment()) ? I18n.t('started') : I18n.t('starts'))
                   +'\n'}
                 </Text>
                 <Text style={styles.schedulesInformations}>
@@ -169,7 +170,7 @@ export default class Schedules extends Component {
               <Text>
                 <Text>
                   {"Shabbat "
-                  +(this.state.shabbatEndDate.isBefore(moment()) ? "est sorti" : "sort")
+                  +(this.state.shabbatEndDate.isBefore(moment()) ? I18n.t('ended') : I18n.t('ends'))
                   +'\n'}
                 </Text>
                 <Text style={styles.schedulesInformations}>
@@ -191,6 +192,24 @@ export default class Schedules extends Component {
         </View>
       </View>
     );
+  }
+}
+
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+I18n.fallbacks = true
+
+I18n.translations = {
+  en: {
+    started: 'started',
+    starts: 'will start',
+    ended: 'ended',
+    ends: 'will end',
+  },
+  fr: {
+    started: 'est entré',
+    starts: 'entre',
+    ended: 'est sorti',
+    ends: 'sort',
   }
 }
 
