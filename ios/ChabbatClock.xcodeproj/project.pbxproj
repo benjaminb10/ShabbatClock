@@ -35,7 +35,6 @@
 		BF1B5AA41DD3B06300AF3799 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2B76821DD37D4C004B8006 /* libRNDeviceInfo.a */; };
 		BF2B766B1DD37CCD004B8006 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5C8B8A1DCF91DA0007A3AE /* libRNGeocoder.a */; };
 		BF3685661DD9A9D0009FE0D4 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BF3685651DD9A9D0009FE0D4 /* main.jsbundle */; };
-		BF36857F1DD9AB1B009FE0D4 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = BF36857E1DD9AB1B009FE0D4 /* assets */; };
 		BF5C8B8B1DCF91FA0007A3AE /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5C8B8A1DCF91DA0007A3AE /* libRNGeocoder.a */; };
 		BFB8CD531DD9FDB3000E8714 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB8CD511DD9FDB3000E8714 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
@@ -221,7 +220,6 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		BF2B767D1DD37D4C004B8006 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		BF3685651DD9A9D0009FE0D4 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ChabbatClock/main.jsbundle; sourceTree = "<group>"; };
-		BF36857E1DD9AB1B009FE0D4 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		BF5C8B661DCF91D90007A3AE /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		BFB8CD521DD9FDB3000E8714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ChabbatClock/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BFB91E3C1DD9E0110022F192 /* ChabbatClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChabbatClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,7 +422,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				BF36857E1DD9AB1B009FE0D4 /* assets */,
 				240B640B1DD14D4B001ABD82 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* ChabbatClock */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -535,7 +532,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 9XB49AU5MU;
+						DevelopmentTeam = 9FGWP7J5WP;
 						ProvisioningStyle = Automatic;
 					};
 					BFB91E3B1DD9E0110022F192 = {
@@ -764,7 +761,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF36857F1DD9AB1B009FE0D4 /* assets in Resources */,
 				240B641A1DD14D4C001ABD82 /* MaterialIcons.ttf in Resources */,
 				240B641B1DD14D4C001ABD82 /* Octicons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -905,7 +901,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 9XB49AU5MU;
+				DEVELOPMENT_TEAM = 9FGWP7J5WP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -933,7 +929,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = 9XB49AU5MU;
+				DEVELOPMENT_TEAM = 9FGWP7J5WP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
