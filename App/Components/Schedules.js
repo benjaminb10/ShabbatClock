@@ -196,24 +196,6 @@ export default class Schedules extends Component {
   }
 }
 
-// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
-I18n.fallbacks = true
-
-I18n.translations = {
-  en: {
-    started: 'started',
-    starts: 'will start',
-    ended: 'ended',
-    ends: 'will end',
-  },
-  fr: {
-    started: 'est entré',
-    starts: 'entre',
-    ended: 'est sorti',
-    ends: 'sort',
-  }
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

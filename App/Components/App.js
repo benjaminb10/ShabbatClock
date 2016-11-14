@@ -74,3 +74,25 @@ const styles = StyleSheet.create({
     flex: 0.7,
   },
 });
+
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+I18n.fallbacks = true
+
+I18n.translations = {
+  en: {
+    started: 'started',
+    starts: 'will start',
+    ended: 'ended',
+    ends: 'will end',
+    schedulesSource: 'Shabbat hours are given by the website ',
+    anyComment: 'Any comment?',
+  },
+  fr: {
+    started: 'est entré',
+    starts: 'entre',
+    ended: 'est sorti',
+    ends: 'sort',
+    schedulesSource: 'Les horaires de Shabbat sont issues du site internet ',
+    anyComment: 'Une remarque ?',
+  }
+}
