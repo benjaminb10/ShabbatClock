@@ -125,7 +125,7 @@ export default class Schedules extends Component {
           }
         };
 
-        request.open('GET', 'http://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=' + place.lat + '&longitude=' + place.lng + '&tzid=' + this.state.timezone);
+        request.open('GET', 'https://www.hebcal.com/shabbat/?cfg=json&m=50&latitude=' + place.lat + '&longitude=' + place.lng + '&tzid=' + this.state.timezone);
         request.send();
 
         Geocoder.geocodePosition(place).then(res => {
