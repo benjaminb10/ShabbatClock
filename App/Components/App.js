@@ -20,7 +20,11 @@ import I18n from 'react-native-i18n'
 // Set it here for the all app
 var moment = require('moment');
 import 'moment/locale/fr'
-moment.locale(I18n.currentLocale());
+if (I18n.currentLocale().includes('fr')) {
+  moment.locale('fr');
+} else {
+  moment.locale('en');
+}
 
 export default class App extends Component {
 
