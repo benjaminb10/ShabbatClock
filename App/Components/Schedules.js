@@ -6,10 +6,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-var moment = require('moment');
 import Geocoder from 'react-native-geocoder';
 import DeviceInfo from 'react-native-device-info';
 import I18n from 'react-native-i18n'
+
+var moment = require('moment');
 
 function arraySearch(arr, val) {
   for (var i=0; i<arr.length; i++)

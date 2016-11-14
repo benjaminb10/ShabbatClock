@@ -6,13 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import I18n from 'react-native-i18n'
-
 var moment = require('moment');
-
-import 'moment/locale/fr'
-
-moment.locale(I18n.currentLocale());
 
 export default class Clock extends Component {
   constructor(props) {

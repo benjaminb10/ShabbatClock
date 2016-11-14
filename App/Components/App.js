@@ -15,6 +15,12 @@ import Clock from './Clock';
 import Schedules from './Schedules';
 import AboutModal from './AboutModal';
 import OpenModalButton from './OpenModalButton';
+import I18n from 'react-native-i18n'
+
+// Set it here for the all app
+var moment = require('moment');
+import 'moment/locale/fr'
+moment.locale(I18n.currentLocale());
 
 export default class App extends Component {
 
