@@ -10,11 +10,9 @@ import {
   View
 } from 'react-native';
 
-
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import I18n from 'react-native-i18n'
 import OpenModalButton from './OpenModalButton';
-
 
 export default class AboutModal extends Component {
     render() {
@@ -33,8 +31,8 @@ export default class AboutModal extends Component {
             </TouchableHighlight>
 
             <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
-              Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
-              {'\n'}{'\n'}{'\n'}Une remarque ?
+              {I18n.t('schedulesSource')+'\n'}https://www.hebcal.com
+              {'\n'}{'\n'}{'\n'+I18n.t('anyComment')}
               {'\n'}shabbatclock@gmail.com
             </Text>
           </View>
@@ -43,8 +41,6 @@ export default class AboutModal extends Component {
       );
     }
 }
-
-
 
 const styles = StyleSheet.create({
   app: {
