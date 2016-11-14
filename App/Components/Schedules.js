@@ -8,7 +8,7 @@ import {
 
 import Geocoder from 'react-native-geocoder';
 import DeviceInfo from 'react-native-device-info';
-import I18n from 'react-native-i18n'
+import I18n from 'react-native-i18n';
 
 var moment = require('moment');
 
@@ -17,6 +17,29 @@ function arraySearch(arr, val) {
     if (arr[i]["category"] === val)
       return i;
   return -1;
+}
+
+class LocationLabel extends Component {
+  render() {
+    if(this.props.locality != 'unknown') {
+      return (
+        <View style={styles.geolocationContainer}>
+          <Text style={styles.geolocation}>
+            {this.props.locality}, {this.props.country}
+          </Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.geolocationContainer}>
+          <Text style={styles.geolocation}>
+            {I18n.t('loading')}
+          </Text>
+        </View>
+      )
+    }
+
+  }
 }
 
 export default class Schedules extends Component {
@@ -186,11 +209,8 @@ export default class Schedules extends Component {
           ) : null
         }
 
-        <View style={styles.geolocationContainer}>
-          <Text style={styles.geolocation}>
-            {this.state.locality}, {this.state.country}
-          </Text>
-        </View>
+        <LocationLabel locality={this.state.locality} country={this.state.country} />
+
       </View>
     );
   }
