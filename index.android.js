@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import App from './App/Components/App';
 import { AppRegistry } from 'react-native';
 
-export default class ShabbatClock extends Component {
+export default class ChabbatClock extends Component {
   render() {
     return (
       <App />
@@ -11,4 +11,4 @@ export default class ShabbatClock extends Component {
   }
 }
 
-AppRegistry.registerComponent('ShabbatClock', () => ShabbatClock);
+AppRegistry.registerComponent('ChabbatClock', () => ChabbatClock);
