@@ -13,46 +13,37 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Clock from './Clock';
 import Schedules from './Schedules';
+import AboutModal from './AboutModal';
+import OpenModalButton from './OpenModalButton';
+import I18n from 'react-native-i18n'
+
+// Set it here for the all app
+var moment = require('moment');
+import 'moment/locale/fr'
+if (I18n.currentLocale().includes('fr')) {
+  moment.locale('fr');
+} else {
+  moment.locale('en');
+}
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {modalVisible: false};
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
-  setModalVisible(visible) {
+  toggleModal() {
+    let visible = !this.state.modalVisible
     this.setState({modalVisible: visible});
   }
 
   render() {
 
     return (
-      <View style={styles.container}>
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-         <View style={styles.container}>
-          <View>
-            <TouchableHighlight onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-            }}>
-              <Text style={{color: '#fff', textAlign: 'right'}}>
-                <Icon name="ios-close" size={36} color="#fff" />
-              </Text>
-            </TouchableHighlight>
-
-            <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
-              Les horaires de Shabbat sont issues du site internet {'\n'}https://www.hebcal.com
-              {'\n'}{'\n'}{'\n'}Une remarque ?
-              {'\n'}shabbatclock@gmail.com
-            </Text>
-          </View>
-         </View>
-        </Modal>
+      <View style={styles.app}>
+        <AboutModal modalVisible={this.state.modalVisible} toggleModal={this.toggleModal} />
 
         <View style={styles.timeContainer}>
           <Clock />
@@ -61,15 +52,7 @@ export default class App extends Component {
           <Schedules />
         </View>
 
-
-
-        <TouchableHighlight onPress={() => {
-          this.setModalVisible(true)
-        }}>
-          <Text style={{textAlign: 'right'}}>
-            <Icon name="ios-information" size={44} color="#fff" />
-          </Text>
-        </TouchableHighlight>
+        <OpenModalButton toggleModal={this.toggleModal} />
 
       </View>
     );
@@ -77,24 +60,47 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  app: {
+    flex: 1,
+    backgroundColor: '#000',
+    padding: 20,
+  },
+  modal: {
     flex: 1,
     backgroundColor: '#000',
     padding: 20,
   },
   timeContainer: {
     flex: 0.3,
+    marginBottom: 50,
   },
   schedulesContainer: {
-    flex: 0.4,
-  },
-  informationsContainer: {
-    flex: 0.15,
-    justifyContent: 'center',
-  },
-  informations: {
-    color: '#aaa',
-    textAlign: 'center',
-    fontSize: 18,
+    flex: 0.7,
   },
 });
+
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+I18n.fallbacks = true
+
+I18n.translations = {
+  en: {
+    started: 'started',
+    starts: 'will start',
+    ended: 'ended',
+    ends: 'will end',
+    schedulesSource: 'Shabbat hours are given by the website ',
+    anyComment: 'Any comment?',
+    at: 'at',
+    loading: 'Loading...',
+  },
+  fr: {
+    started: 'est entré',
+    starts: 'entre',
+    ended: 'est sorti',
+    ends: 'sort',
+    schedulesSource: 'Les horaires de Shabbat sont issues du site internet ',
+    anyComment: 'Une remarque ?',
+    at: 'à',
+    loading: 'Chargement...',
+  }
+}
