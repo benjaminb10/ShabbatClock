@@ -1,5 +1,5 @@
 {
-  "name": "ChabbatClock",
+  "name": "ShabbatWatch",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -27,6 +27,6 @@
     "whatwg-fetch": "1.0.0"
   },
   "scripts": {
-    "build:ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.ios.js' --bundle-output='./ios/ChabbatClock/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'"
+    "build:ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.ios.js' --bundle-output='./ios/ShabbatWatch/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'"
   }
 }

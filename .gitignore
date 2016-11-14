@@ -40,4 +40,4 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 
-ios/ChabbatClock.xcodeproj/project.pbxproj
+ios/ShabbatWatch.xcodeproj/project.pbxproj
