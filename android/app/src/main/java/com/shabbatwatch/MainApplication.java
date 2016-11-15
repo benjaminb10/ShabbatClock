@@ -1,4 +1,4 @@
-package com.chabbatclock;
+package com.shabbatwatch;
 
 import android.app.Application;
 import android.util.Log;
