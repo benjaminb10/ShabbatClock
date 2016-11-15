@@ -95,6 +95,7 @@ export default class Schedules extends Component {
         // XMLHttpRequest
         var request = new XMLHttpRequest();
         request.onreadystatechange = (e) => {
+          // alert(JSON.stringify(request, null, 4))
           if (request.readyState !== 4) {
             return;
           }
