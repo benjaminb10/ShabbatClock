@@ -33,7 +33,7 @@ export default class AboutModal extends Component {
             <Text style={[styles.informations, {fontSize:22, marginTop:50}]}>
               {I18n.t('schedulesSource')+'\n'}https://www.hebcal.com
               {'\n'}{'\n'}{'\n'+I18n.t('anyComment')}
-              {'\n'}chabbatclock@gmail.com
+              {'\n'}shabbatwatch@gmail.com
             </Text>
           </View>
          </View>

@@ -1,4 +1,4 @@
-rootProject.name = 'ChabbatClock'
+rootProject.name = 'ShabbatWatch'
 
 include ':app'
 include ':react-native-vector-icons'

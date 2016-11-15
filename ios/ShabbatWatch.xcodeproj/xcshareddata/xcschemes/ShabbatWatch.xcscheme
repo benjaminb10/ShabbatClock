@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ChabbatClock.app"
-               BlueprintName = "ChabbatClock"
-               ReferencedContainer = "container:ChabbatClock.xcodeproj">
+               BuildableName = "ShabbatWatch.app"
+               BlueprintName = "ShabbatWatch"
+               ReferencedContainer = "container:ShabbatWatch.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BuildableName = "ShabbatWatchTests.xctest"
+               BlueprintName = "ShabbatWatchTests"
+               ReferencedContainer = "container:ShabbatWatch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,19 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ChabbatClockTests.xctest"
-               BlueprintName = "ChabbatClockTests"
-               ReferencedContainer = "container:ChabbatClock.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFB91E3B1DD9E0110022F192"
-               BuildableName = "ChabbatClockUITests.xctest"
-               BlueprintName = "ChabbatClockUITests"
-               ReferencedContainer = "container:ChabbatClock.xcodeproj">
+               BuildableName = "ShabbatWatchTests.xctest"
+               BlueprintName = "ShabbatWatchTests"
+               ReferencedContainer = "container:ShabbatWatch.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChabbatClock.app"
-            BlueprintName = "ChabbatClock"
-            ReferencedContainer = "container:ChabbatClock.xcodeproj">
+            BuildableName = "ShabbatWatch.app"
+            BlueprintName = "ShabbatWatch"
+            ReferencedContainer = "container:ShabbatWatch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChabbatClock.app"
-            BlueprintName = "ChabbatClock"
-            ReferencedContainer = "container:ChabbatClock.xcodeproj">
+            BuildableName = "ShabbatWatch.app"
+            BlueprintName = "ShabbatWatch"
+            ReferencedContainer = "container:ShabbatWatch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChabbatClock.app"
-            BlueprintName = "ChabbatClock"
-            ReferencedContainer = "container:ChabbatClock.xcodeproj">
+            BuildableName = "ShabbatWatch.app"
+            BlueprintName = "ShabbatWatch"
+            ReferencedContainer = "container:ShabbatWatch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
