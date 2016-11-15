@@ -33,7 +33,14 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "ShabbatWatch") # Build your app - more options available
+
+    match(type: "appstore")
+
+    gym(
+      scheme: "ShabbatWatch",
+      project: './ios/ShabbatWatch.xcodeproj'
+    )
+
     pilot
 
     # sh "your_script.sh"
@@ -44,7 +51,7 @@ platform :ios do
   lane :release do
     # match(type: "appstore")
     # snapshot
-    gym(scheme: "ShabbatWatch") # Build your app - more options available
+    gym # Build your app - more options available
     deliver(force: true)
     # frameit
   end
